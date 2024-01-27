@@ -12,3 +12,6 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspacez
+Content/ThirdPerson/Maps/Indoor_BuiltData.uasset
+Content/ThirdPerson/Maps/OutDoor_BuiltData.uasset
+Content/ThirdPerson/Maps/Testmap_BuiltData.uasset
