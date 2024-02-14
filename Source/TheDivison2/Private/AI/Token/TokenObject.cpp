@@ -11,7 +11,7 @@ void UTokenObject::SetTokenOwner ( AActor* Owner,bool bIsReleasing )
 		FTimerHandle ReleaseTimerHandle;
 		if ( TokenOwner->GetWorld() )
 		{
-			TokenOwner->GetWorld ( )->GetTimerManager ( ).SetTimer ( ReleaseTimerHandle, [&] ( ) { bIsTokenReady = true; }, 4, false );
+			TokenOwner->GetWorld ( )->GetTimerManager ( ).SetTimer ( ReleaseTimerHandle, [&] ( ) { bIsTokenReady = true; }, 2, false );
 		}
 		else
 		{

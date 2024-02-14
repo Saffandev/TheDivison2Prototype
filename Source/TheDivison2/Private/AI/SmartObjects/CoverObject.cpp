@@ -12,7 +12,9 @@ ACoverObject::ACoverObject()
 	PrimaryActorTick.bCanEverTick = true;
 	CoverBox = CreateDefaultSubobject<UBoxComponent> ( TEXT ( "CoverBox" ) );
 	RootComponent = CoverBox;
-	NavModifier = CreateDefaultSubobject<UNavModifierComponent> ( TEXT ( "NavModifier" ) );
+	CoverNavModifier = CreateDefaultSubobject<UNavModifierComponent> ( TEXT ( "CoverNavModifier" ) );
+	NullNavModifier = CreateDefaultSubobject<UNavModifierComponent> ( TEXT ( "NullNavModifier" ) );
+
 }
 
 void ACoverObject::SetActorOwner ( AActor* NewOwner )
@@ -20,9 +22,10 @@ void ACoverObject::SetActorOwner ( AActor* NewOwner )
 	SetOwner ( NewOwner );
 }
 
-void ACoverObject::SetNavModifierExtent ( FVector Extent )
+void ACoverObject::SetNavModifierExtent ( UNavModifierComponent* NavModifier,FVector Extent )
 { 
-	NavModifier->FailsafeExtent = Extent;
+	if(NavModifier )
+		NavModifier->FailsafeExtent = Extent;
 }
 
 

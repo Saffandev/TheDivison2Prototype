@@ -24,7 +24,7 @@ public:
 	UFUNCTION(BlueprintCallable,BlueprintImplementableEvent,CallInEditor,Category = "Cover" )
 	void Generate ( );
 	UFUNCTION(Blueprintcallable,Category = "Cover" )
-	void SetNavModifierExtent ( FVector Extent );
+	void SetNavModifierExtent ( UNavModifierComponent* NavModifier, FVector Extent );
 	UFUNCTION(BlueprintPure,Category = "Cover"  )
 	AActor* GetActorOwner ( ) const
 	{
@@ -34,8 +34,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category = "Cover" )
 	UBoxComponent* CoverBox;
-	UPROPERTY(VisibleAnywhere,Category = "Cover" )
-	UNavModifierComponent* NavModifier;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly,Category = "Cover" )
+	UNavModifierComponent* CoverNavModifier;
+	UPROPERTY ( VisibleAnywhere, BlueprintReadOnly, Category = "Cover" )
+	UNavModifierComponent* NullNavModifier;
 
 
 };
