@@ -14,7 +14,7 @@ FVector ABaseAIController::GetFocalPointOnActor ( const AActor* Actor ) const
 {
 	if ( Actor && UGameplayStatics::GetPlayerPawn (this,0 ) == Actor )
 	{
-		return Actor->GetActorLocation ( ) + FVector ( 0, 0, 50.f );
+		return Actor->GetActorLocation ( ) + FocusOffset;
 	}
 	return FVector ( );
 }

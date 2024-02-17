@@ -16,6 +16,7 @@ class THEDIVISON2_API ABaseAIController : public AAIController
 public:
 	ABaseAIController ( const FObjectInitializer& ObjectInitializer );
 	virtual FVector GetFocalPointOnActor ( const AActor* Actor ) const override;
-
+	UPROPERTY(EditAnywhere )
+	FVector FocusOffset;
 
 };
