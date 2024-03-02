@@ -65,7 +65,7 @@ struct FAITraits : public FTableRowBase
 	/*How fast can AI Advance, i.e. how fast will it get close to the player*/
 	UPROPERTY ( EditAnywhere, BlueprintReadOnly, Category = "AITraits" )
 	float AdvancingTime;
-
+	
 	/*Threshold value at which AI should be stunned*/
 	UPROPERTY(EditAnywhere,BlueprintReadOnly, Category = "AITraits||Stun" )
 	float StunThreshold;
@@ -77,6 +77,10 @@ struct FAITraits : public FTableRowBase
 	/*For how long AI should Fire*/
 	UPROPERTY ( EditAnywhere, BlueprintReadOnly, Category = "AITraits" )
 	float FireDuration;
+
+	/*Minimum Gap before requesting CombatToken*/
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category = "AITraits" )
+	float FireGap;
 
 	/*Maximum range at which AI can fire*/
 	UPROPERTY ( EditAnywhere, BlueprintReadOnly, Category = "AITraits" )
