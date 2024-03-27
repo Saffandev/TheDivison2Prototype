@@ -16,12 +16,15 @@ class THEDIVISON2_API UTokenObject : public UObject
 	
 
 public:
-	void SetTokenOwner (AActor* Owner,bool bIsReleasing );
+	void SetTokenOwner (AActor* Owner );
 	bool IsTokenAvailable ( );
 	AActor* GetOwner ( );
+	void SetTokenReleaseTimer ( float NewTimer );
 
 public:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly )
 	AActor* TokenOwner;
+
 	bool bIsTokenReady = true;
+	float TokenReleaseTimer = 1.0f;
 };

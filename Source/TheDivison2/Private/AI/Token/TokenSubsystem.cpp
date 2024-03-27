@@ -28,11 +28,16 @@ void UTokenSubsystem::CreateTokens ( )
 	}
 	for ( int i = 0; i < CombatTokenCount; i++ )
 	{
-		CombatTokens.Add(NewObject<UTokenObject> ( ));
+		UTokenObject* NewToken = NewObject<UTokenObject> ( );
+		NewToken->SetTokenReleaseTimer (TokenConfig->CombatTokenReleaseTimer ); 
+		CombatTokens.Add(NewToken);
+		
 	}
 	for ( int i = 0; i < CoverChangeTokenCount; i++ )
 	{
-		CoverChangeTokens.Add ( NewObject<UTokenObject> ( ) );
+		UTokenObject* NewToken = NewObject<UTokenObject> ( );
+		NewToken->SetTokenReleaseTimer ( TokenConfig->CoverTokenReleaseTimer );
+		CoverChangeTokens.Add ( NewToken );
 	}
 }
 
@@ -49,7 +54,7 @@ bool UTokenSubsystem::RequestToken ( AActor * RequestingActor, ETokenType TokenT
 	UTokenObject* FreeToken = GiveFreeTokenByType ( TokenType );
 	if ( FreeToken )
 	{
-		FreeToken->SetTokenOwner ( RequestingActor,false );
+		FreeToken->SetTokenOwner ( RequestingActor );
 		return true;
 	}
 	return false;
@@ -129,7 +134,7 @@ void UTokenSubsystem::ReleaseActorToken ( TArray<UTokenObject*> TokenContainer, 
 		if ( bReqByReleaseAll || Token->GetOwner ( ) == TokenOwner )
 		{
 			UE_LOG ( LogTemp, Error, TEXT ( "Token Released" ) );
-			Token->SetTokenOwner ( nullptr,true );
+			Token->SetTokenOwner ( nullptr );
 		}
 	}
 }

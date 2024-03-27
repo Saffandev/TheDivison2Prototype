@@ -3,15 +3,15 @@
 
 #include "AI/Token/TokenObject.h"
 
-void UTokenObject::SetTokenOwner ( AActor* Owner,bool bIsReleasing )
+void UTokenObject::SetTokenOwner ( AActor* Owner )
 { 
-	if ( bIsReleasing )
+	if ( Owner == nullptr )
 	{
 		bIsTokenReady = false;
 		FTimerHandle ReleaseTimerHandle;
 		if ( TokenOwner->GetWorld() )
 		{
-			TokenOwner->GetWorld ( )->GetTimerManager ( ).SetTimer ( ReleaseTimerHandle, [&] ( ) { bIsTokenReady = true; }, 2, false );
+			TokenOwner->GetWorld ( )->GetTimerManager ( ).SetTimer ( ReleaseTimerHandle, [&] ( ) { bIsTokenReady = true; }, TokenReleaseTimer, false );
 		}
 		else
 		{
@@ -31,4 +31,9 @@ bool UTokenObject::IsTokenAvailable ( )
 AActor* UTokenObject::GetOwner ( )
 {
 	return TokenOwner;
+}
+
+void UTokenObject::SetTokenReleaseTimer ( float NewTimer )
+{
+	TokenReleaseTimer = NewTimer;
 }
