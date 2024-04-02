@@ -18,5 +18,8 @@ public:
 	virtual FVector GetFocalPointOnActor ( const AActor* Actor ) const override;
 	UPROPERTY(EditAnywhere )
 	FVector FocusOffset;
+protected:
+	/** Update direction AI is looking based on FocalPoint */
+	virtual void UpdateControlRotation ( float DeltaTime, bool bUpdatePawn = true );
 
 };
