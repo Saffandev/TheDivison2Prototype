@@ -38,6 +38,7 @@ public:
 	* @param Token				Type of token which actor wants
 	* @return					Return true if actor is assigned with a token
 	*/
+	
 	UFUNCTION(BlueprintCallable,Category = "Token" )
 	bool RequestToken ( AActor* RequestingActor,ETokenType TokenType);
 
@@ -53,7 +54,6 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable,Category = "Token" )
 	void ReleaseAllTokens ( );
-
 	/**
 	* Will return bool depending if the Requesting Actor has a token asssigned or not
 	* @param RequestingActor	The Actor who is requesing for the token.
