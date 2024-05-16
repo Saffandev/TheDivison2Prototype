@@ -80,7 +80,7 @@ struct FAITraits : public FTableRowBase
 
 	/*Minimum Gap before requesting CombatToken*/
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category = "AITraits" )
-	float FireGap;
+	float CombatTokenCooldown;
 
 	/*Maximum range at which AI can fire*/
 	UPROPERTY ( EditAnywhere, BlueprintReadOnly, Category = "AITraits" )

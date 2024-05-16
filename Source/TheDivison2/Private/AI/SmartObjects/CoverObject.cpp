@@ -55,11 +55,13 @@ void ACoverObject::GenerateCoverShape ( )
 	CoverBox->SetBoxExtent ( CoverBox->GetScaledBoxExtent ( ) );
 	SetActorScale3D ( FVector ( 1, 1, 1 ) );
 	FVector CoverBoxExtent = CoverBox->GetUnscaledBoxExtent ( );
-	CoverVisualBox->SetWorldScale3D ( CoverBoxExtent / 50 );
 	CoverNavModifier->FailsafeExtent = CoverBoxExtent + 50 ;
-	NullNavModifier->FailsafeExtent = CoverBoxExtent - 50;
-
-
+	NullNavModifier->FailsafeExtent = FVector(CoverBoxExtent.X - 50,CoverBoxExtent.Y - 50, CoverBoxExtent.Z);
+	SetCoverVisMaterial ( );
+#if WITH_EDITOR
+	CoverVisualBox->SetWorldScale3D ( CoverBoxExtent / 50 );
+	
+#endif
 }
 
 TArray<FVector> ACoverObject::GetCrouchPoints ( )
@@ -80,9 +82,7 @@ void ACoverObject::GeneratePoints ( )
 	{
 		for ( int32 index_Y = -1; index_Y <= 1; index_Y++ )
 		{
-		
 			//Creating Peak Points (corner points)
-
 			if ( UKismetMathLibrary::Abs ( index_X ) + UKismetMathLibrary::Abs ( index_Y ) == 2 )
 			{
 				FVector Point = CreatePoint ( index_X, index_Y );

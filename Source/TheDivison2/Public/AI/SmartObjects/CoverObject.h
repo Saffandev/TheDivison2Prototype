@@ -45,6 +45,8 @@ public:
 	UFUNCTION(Blueprintcallable,Category = "Cover" )
 	void SetNavModifierExtent ( UNavModifierComponent* NavModifier, FVector Extent );
 
+	UFUNCTION ( BlueprintImplementableEvent,CallInEditor, Category = "Cover||Visuals" )
+		void SetCoverVisMaterial ( );
 private:
 	/*Function to check if the generated points is valid or not (here valid means that if the points is valid for the AI to take cover)*/
 	bool CheckPointValidity ( FVector& Point );
