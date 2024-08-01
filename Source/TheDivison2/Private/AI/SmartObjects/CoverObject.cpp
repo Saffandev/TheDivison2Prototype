@@ -106,6 +106,8 @@ void ACoverObject::GeneratePoints ( )
 	}
 }
 
+
+
 bool ACoverObject::CheckPointValidity ( FVector& Point )
 { 
 	FVector TempPoint = Point;

@@ -23,10 +23,15 @@ UENVQueryTest_RemoveTakenCover::UENVQueryTest_RemoveTakenCover (const FObjectIni
 void UENVQueryTest_RemoveTakenCover::RunTest ( FEnvQueryInstance& QueryInstance ) const
 {
 	UObject* DataOwner = QueryInstance.Owner.Get ( );
+	AActor* OwnerActor = Cast<AActor> ( DataOwner );
+	if ( !IsValid ( OwnerActor ) )
+	{
+		return;
+	}
 	BoolValue.BindData ( DataOwner, QueryInstance.QueryID );
 	TArray<AActor*> CoverObj;
 	//UE_LOG ( LogTemp, Error, TEXT ( "RunTest" ) );
-
+	UE_LOG ( LogTemp, Error, TEXT ( "Querier Name = %s" ), *DataOwner->GetName());
 	for ( FEnvQueryInstance :: ItemIterator It ( this, QueryInstance ); It; ++It )
 	{
 		AActor* CoverItem = GetItemActor ( QueryInstance, It.GetIndex ( ) );
@@ -34,7 +39,9 @@ void UENVQueryTest_RemoveTakenCover::RunTest ( FEnvQueryInstance& QueryInstance 
 		bool bHasCoverOwner = false;
 		if ( CoverItem )
 		{
-			 bHasCoverOwner = CoverItem->GetOwner ( ) == nullptr;
+			 bHasCoverOwner = (CoverItem->GetOwner ( ) == nullptr) && 
+							  (Cast<ACoverObject> ( CoverItem )->bHasValidCoverPoints ( OwnerActor ));
+			
 		}
 		It.SetScore ( TestPurpose, FilterType, bHasCoverOwner, BoolValue.GetValue() );
 	}

@@ -21,5 +21,6 @@ public:
 protected:
 	/** Update direction AI is looking based on FocalPoint */
 	virtual void UpdateControlRotation ( float DeltaTime, bool bUpdatePawn = true );
-
+	UFUNCTION(BlueprintCallable )
+	bool LineOfSightText ( AActor* Actor );
 };
